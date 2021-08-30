@@ -1,0 +1,12 @@
+[submodule "deps/openvpn3/asio"]
+	path = deps/openvpn3/asio
+	url = https://github.com/chriskohlhoff/asio
+[submodule "deps/openvpn3/lz4"]
+	path = deps/openvpn3/lz4
+	url = https://github.com/lz4/lz4
+[submodule "deps/openvpn3/mbedtls"]
+	path = deps/openvpn3/mbedtls
+	url = https://github.com/ARMmbed/mbedtls
+[submodule "deps/openvpn3/openvpn3"]
+	path = deps/openvpn3/openvpn3
+	url = https://github.com/OpenVPN/openvpn3

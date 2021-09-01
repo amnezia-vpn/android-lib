@@ -25,6 +25,8 @@ include(lzo.cmake)
 include(lz4.cmake)
 include(openssl//openssl.cmake)
 message("ABI: ${CMAKE_ANDROID_ARCH_ABI}")
+set(ANDROID_EXTRA_LIBS "")
+message("${ANDROID_EXTRA_LIBS}")
 
 if(NOT ${OPENVPN3OSSL} OR ${OPENVPN2MBED})
     add_subdirectory(mbedtls)

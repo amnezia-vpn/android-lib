@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 # Git version string
+project(openvpn_deps)
 
 #include(GetGitRevisionDescription.cmake)
 #git_describe(OPENVPN3_GIT "${CMAKE_CURRENT_SOURCE_DIR}/openvpn3" "--tags" "--always" "--long")
@@ -15,10 +16,15 @@ OPTION(OPENVPN2MBED "Use mbed TLS for OpenVPN2" OFF)
 OPTION(OPENVPN3OSSL "Use OpenSSL for OpenVPN3" ON)
 SET(OPENVPN3OSSL ON)
 
+# STATIC or SHARED
+SET(SSLLIBTYPE STATIC)
+SET(OPENSSL_PATH "openssl")
+
 include(tools.cmake)
 include(lzo.cmake)
 include(lz4.cmake)
-include("E:/Android/android_openssl/CMakeLists.txt")
+include(openssl//openssl.cmake)
+message("ABI: ${CMAKE_ANDROID_ARCH_ABI}")
 
 if(NOT ${OPENVPN3OSSL} OR ${OPENVPN2MBED})
     add_subdirectory(mbedtls)
@@ -35,14 +41,16 @@ target_include_directories(ovpn3 PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/asio/asio/include
         ${CMAKE_CURRENT_SOURCE_DIR}/openvpn3/client
         ${CMAKE_CURRENT_SOURCE_DIR}/mbedtls/include
-        E:/Android/android_openssl/static/include
         )
 
 if (${OPENVPN3OSSL})
     target_compile_definitions(ovpn3 PRIVATE
             -DUSE_OPENSSL
             )
-    target_link_libraries(ovpn3 crypto ssl lzo lz4)
+    target_link_libraries(ovpn3 crypto
+                                ssl
+                                lzo
+                                lz4)
 else ()
     target_compile_definitions(ovpn3 PRIVATE
             -DUSE_MBEDTLS
@@ -60,8 +68,7 @@ target_compile_definitions(ovpn3 PRIVATE
 #        -DGIT_VERSION_STRING=\"${OPENVPN3_GIT}\"
         -DNO_ROUTE_EXCLUDE_EMULATION
         -DOPENVPN_SHOW_SESSION_TOKEN
-        -DOPENSSL_API_COMPAT=0x10200000L
-
+#        -DOPENSSL_API_COMPAT=0x10200000L
         )
 
 

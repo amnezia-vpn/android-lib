@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 
 project(amnezianl LANGUAGES CXX)
 
-add_subdirectory(deps)
+include(${CMAKE_CURRENT_SOURCE_DIR}/deps/CMakeLists.txt)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD 17)
@@ -14,5 +14,6 @@ add_library(amnezianl SHARED
   src/amnezianl.h
 )
 
+#add_dependencies(amnezianl deps)
 target_compile_definitions(amnezianl PRIVATE AMNEZIANL_LIBRARY)
 target_link_libraries(amnezianl ovpn3)

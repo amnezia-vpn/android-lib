@@ -70,7 +70,7 @@ set(lzo_srcs
   lzo_util.c
   )
 
-PREPEND(lzo_src_with_path "lzo/src" ${lzo_srcs})
+PREPEND(lzo_src_with_path "deps/openvpn/lzo/src" ${lzo_srcs})
 add_library(lzo SHARED ${lzo_src_with_path})
 target_include_directories(lzo PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lzo/include")
 set_target_properties(lzo PROPERTIES LINKER_LANGUAGE C)

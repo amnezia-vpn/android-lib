@@ -2,6 +2,7 @@
 #define AMNEZIANL_H
 
 #include "amnezianl_global.h"
+#include "client/ovpncli.hpp"
 
 class AMNEZIANL_EXPORT Amnezianl
 {

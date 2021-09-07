@@ -9,4 +9,11 @@
 	url = https://github.com/ARMmbed/mbedtls
 [submodule "deps/openvpn/openvpn3"]
 	path = deps/openvpn/openvpn3
+<<<<<<< HEAD
 	url = https://github.com/OpenVPN/openvpn3
+=======
+        url = https://github.com/OpenVPN/openvpn3
+[submodule "deps/openvpn/openssl"]
+	path = deps/openvpn/openssl
+	url = https://github.com/schwabe/platform_external_openssl
+>>>>>>> 6f08882b9f900663c2ace70d07466b9645225859

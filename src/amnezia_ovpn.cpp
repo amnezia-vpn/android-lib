@@ -3,68 +3,73 @@
 
 using namespace openvpn::ClientAPI;
 
-class AmneziaOpenVPN : public openvpn::ClientAPI::OpenVPNClient {
+namespace AmneziaVPN {
+    class AmneziaOpenVPN : public OpenVPNClient {
 
-    void event(const Event & event) override
+        void event(const Event & event) override
+        {
+
+        }
+
+        void log(const LogInfo & log) override
+        {
+
+        }
+
+        bool pause_on_connection_timeout() override
+        {
+
+        }
+
+        void external_pki_cert_request(ExternalPKICertRequest&) override
+        {
+
+        }
+
+        void external_pki_sign_request(ExternalPKISignRequest&) override
+        {
+
+        }
+
+    };
+
+static AmneziaOpenVPN * ovpn_instance;
+
+
+    OpenVPNProtocol::OpenVPNProtocol()
+        : VPNProtocol()
+    {
+        if(ovpn_instance != nullptr)
+            delete ovpn_instance;
+
+        ovpn_instance = new AmneziaOpenVPN();
+    }
+
+    bool OpenVPNProtocol::isConnected() const
     {
 
     }
 
-    void log(const LogInfo & log) override
+    bool OpenVPNProtocol::isDisconnected() const
     {
 
     }
 
-    bool pause_on_connection_timeout() override
+    ErrorCode OpenVPNProtocol::start()
     {
-
+        // Configure connection before connect
+        ovpn_instance->connect();
     }
 
-    void external_pki_cert_request(ExternalPKICertRequest&) override
+    void OpenVPNProtocol::stop()
     {
-
+        ovpn_instance->stop();
     }
 
-    void external_pki_sign_request(ExternalPKISignRequest&) override
+    ConnectionState OpenVPNProtocol::connectionState() const
     {
 
     }
 
 };
 
-static AmneziaOpenVPN * ovpn_instance;
-
-
-AmneziaVPN::OpenVPNProtocol::OpenVPNProtocol()
-{
-    if(ovpn_instance != nullptr)
-        delete ovpn_instance;
-
-    ovpn_instance = new AmneziaOpenVPN();
-}
-
-bool AmneziaVPN::OpenVPNProtocol::isConnected() const
-{
-
-}
-
-bool AmneziaVPN::OpenVPNProtocol::isDisconnected() const
-{
-
-}
-
-AmneziaVPN::ErrorCode AmneziaVPN::OpenVPNProtocol::start()
-{
-    // Configure connection before connect
-    ovpn_instance->connect();
-}
-
-void AmneziaVPN::OpenVPNProtocol::stop()
-{
-    ovpn_instance->stop();
-}
-
-AmneziaVPN::ConnectionState AmneziaVPN::OpenVPNProtocol::connectionState() const
-{
-
-}

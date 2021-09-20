@@ -1,6 +1,6 @@
 #pragma once
 
-#include "amnezianl.h"
+#include "amneziainterface.h"
 
 namespace AmneziaVPN {
 

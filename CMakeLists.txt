@@ -8,6 +8,7 @@ add_library(amnezianl SHARED
   src/amnezianl_global.h
   src/amnezianl.cpp
   src/amnezianl.h
+  src/amneziainterface.h
   src/amnezia_ovpn.h
   src/amnezia_ovpn.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/deps/openvpn/openvpn3/client/ovpncli.cpp

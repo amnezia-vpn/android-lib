@@ -6,7 +6,7 @@ namespace AmneziaVPN {
 
 class OpenVPNProtocol : public VPNProtocol {
 public:
-    OpenVPNProtocol();
+    OpenVPNProtocol(std::string &configData);
 
     bool isConnected() const override;
     bool isDisconnected() const override;
@@ -14,6 +14,8 @@ public:
     void stop() override;
     ConnectionState connectionState() const override;
     std::string returnStatus();
+protected:
+    std::string m_configData;
 };
 
 }

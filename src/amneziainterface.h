@@ -1,5 +1,5 @@
 #pragma once
-
+#include <string>
 namespace AmneziaVPN {
     enum class ErrorCode {
         OK = 0,
@@ -16,6 +16,7 @@ namespace AmneziaVPN {
 
     public:
         VPNProtocol() = default;
+        virtual ~VPNProtocol() = default;
         virtual bool isConnected() const = 0;
         virtual bool isDisconnected() const = 0;
         virtual ErrorCode start() = 0;
